@@ -23,7 +23,7 @@ Route::get('/posts/{post}', [PostsController::class, 'show']);
 
 Route::get('/about', function (){
     return view('about', [
-        'articles' => App\Models\Articles::take(3)->latest()->get()
+        'articles' => App\Models\Article::take(3)->latest()->get()
     ]);
 });
 
