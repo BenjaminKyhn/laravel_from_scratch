@@ -8,7 +8,7 @@ use App\Models\Article;
 class ArticlesController extends Controller
 {
     public function show($id){
-        $article = Article::find($id);
+        $article = Article::findOrFail($id);
 
         return view('articles.show', ['article' => $article]);
     }
@@ -39,9 +39,7 @@ class ArticlesController extends Controller
         return redirect('/articles');
     }
 
-    public function edit($id){
-        $article = Article::find($id);
-
+    public function edit(Article $article){
         return view('articles.edit', ['article' => $article]);
     }
 
