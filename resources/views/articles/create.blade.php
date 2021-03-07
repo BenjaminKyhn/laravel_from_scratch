@@ -5,37 +5,62 @@
 @endsection
 
 @section('content')
-    <div id="wrapper">
-        <div id="page" class="container">
-            <h1 class="heading has-text-weight-bold is-size-4">New article</h1>
-            <form method="POST" action="/articles">
-                @csrf
+<div id="wrapper">
+    <div id="page" class="container">
+        <h1 class="heading has-text-weight-bold is-size-4">New article</h1>
+        <form method="POST" action="/articles">
+            @csrf
 
-                <div class="field">
-                    <label class="label" for="title">Title</label>
-                    <div class="control">
-                        <input class="input" type="text" name="title" id="title">
-                    </div>
+            <div class="field">
+                <label class="label" for="title">Title</label>
+                <div class="control">
+                    <input
+                        class="input {{ $errors->first('title') ? 'is-danger' : '' }}"
+                        type="text"
+                        name="title"
+                        id="title"
+                        value="{{ old('title') }}"
+                    >
+                    @if ($errors->has('title'))
+                    <p class="help is-danger">{{ $errors->first('title') }}</p>
+                    @endif
                 </div>
-                <div class="field">
-                    <label class="label" for="excerpt">Excerpt</label>
-                    <div class="control">
-                        <input class="textarea" name="excerpt" id="excerpt">
-                    </div>
+            </div>
+            <div class="field">
+                <label class="label" for="excerpt">Excerpt</label>
+                <div class="control">
+                    <input
+                        class="textarea @error('excerpt') is-danger @enderror"
+                        name="excerpt"
+                        id="excerpt"
+                        value="{{ old('excerpt') }}"
+                    >
+                    @if ($errors->has('excerpt'))
+                    <p class="help is-danger">{{ $errors->first('excerpt') }}</p>
+                    @endif
                 </div>
-                <div class="field">
-                    <label class="label" for="body">Body</label>
-                    <div class="control">
-                        <input class="textarea" name="body" id="body">
-                    </div>
+            </div>
+            <div class="field">
+                <label class="label" for="body">Body</label>
+                <div class="control">
+                    <input
+                        class="textarea @error('body') is-danger @enderror"
+                        name="body"
+                        id="body"
+                        value="{{ old('body') }}"
+                    >
+                    @error('body')
+                    <p class="help is-danger">{{ $errors->first('body') }}</p>
+                    @enderror
                 </div>
+            </div>
 
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-link" type="submit">Submit</button>
-                    </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">Submit</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
 @endsection
