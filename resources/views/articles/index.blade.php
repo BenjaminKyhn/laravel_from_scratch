@@ -7,7 +7,7 @@
         @foreach ($articles as $article)
         <div id="content">
             <div class="title">
-                <h2><a href="/articles/{{$article->id}}">
+                <h2><a href="{{ route('articles.show', $article->id) }}">
                         {{$article->title}}
                     </a></h2>
                 <p><img src="/images/banner.jpg" alt="" class="image image-full"/></p>

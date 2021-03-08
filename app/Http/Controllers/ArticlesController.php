@@ -44,7 +44,8 @@ class ArticlesController extends Controller
         $article->body = request('body');
         $article->save();
 
-        return redirect('/articles/' . $article->id);
+        return redirect(route('articles.show', $article->id));
+//        return redirect($article->path()); //cleaner
     }
 
     public function destroy(){
