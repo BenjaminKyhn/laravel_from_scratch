@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,10 @@ Route::put('/articles/{article}', [ArticlesController::class, 'update']);
 
 Route::get('/contact', [ContactController::class, 'show']);
 Route::post('/contact', [ContactController::class, 'store']);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('payments/create', [PaymentsController::class, 'create'])->middleware('auth');
+Route::post('payments/create', [PaymentsController::class, 'store'])->middleware('auth');
+
+Auth::routes();
