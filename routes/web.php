@@ -4,6 +4,7 @@ use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\UserNotificationsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,7 @@ Route::post('/contact', [ContactController::class, 'store']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('payments/create', [PaymentsController::class, 'create'])->middleware('auth');
-Route::post('payments/create', [PaymentsController::class, 'store'])->middleware('auth');
+Route::post('payments', [PaymentsController::class, 'store'])->middleware('auth');
+Route::get('notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
 
 Auth::routes();
