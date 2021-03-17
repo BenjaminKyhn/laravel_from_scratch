@@ -31,5 +31,11 @@ class AuthServiceProvider extends ServiceProvider
 //            return $conversation->user->is($user);
 //        });
 //        This was moved to Policies->ConversationPolicy.php
+
+        Gate::before(function (User $user){
+            if ($user->id == 6){ //user with id 6 is admin and has full access to any resource in the app
+                return true;
+            }
+        });
     }
 }
