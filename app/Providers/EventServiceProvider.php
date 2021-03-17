@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\ProductPurchased;
+use App\Listeners\AwardAchievements;
+use App\Listeners\SendShareableCoupon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,7 +21,20 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        /*
+         * Unnecessary when using shouldDiscoverEvents
+         * use php artisan event:list command
+         */
+//        ProductPurchased::class => [
+//            AwardAchievements::class,
+//            SendShareableCoupon::class
+//        ]
     ];
+
+    public function shouldDiscoverEvents()
+    {
+        return true; // automaticall discovers events
+    }
 
     /**
      * Register any events for your application.
