@@ -13,4 +13,22 @@
 
 @section ('content')
 
+<div>
+    <li>
+        <a href="/login">Login</a>
+    </li>
+    @can ('edit_forum')
+    <li>
+        <a href="#">Edit Forum</a>
+    </li>
+    @endcan
+
+    @can ('view_reports')
+    <li>
+        <a href="#">View reports</a>
+    </li>
+    @endcan
+</div>
+
 @endsection
+

@@ -37,5 +37,10 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        Gate::before(function ($user, $ability){
+           // The user who signed in
+            return $user->abilities()->contains($ability);
+        });
     }
 }

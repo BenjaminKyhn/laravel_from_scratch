@@ -55,4 +55,8 @@ Route::get('conversations/{conversation}', [ConversationsController::class, 'sho
 
 Route::post('best-replies/{reply}', [ConversationBestReplyController::class, 'store']);
 
+Route::get('/reports', function(){
+    return 'the secret reports';
+})->middleware('can:view_reports');
+
 Auth::routes();
