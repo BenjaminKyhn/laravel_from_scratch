@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function projects(){
         return $this->hasMany(Project::class);
     }
+
+    public function routeNotificationForNexmo($notification)
+    {
+        return 'register a test number with Vonage and put it here';
+    }
 }
