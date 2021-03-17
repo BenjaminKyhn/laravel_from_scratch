@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ConversationBestReplyController;
+use App\Http\Controllers\ConversationsController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\ArticlesController;
@@ -47,5 +49,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('payments/create', [PaymentsController::class, 'create'])->middleware('auth');
 Route::post('payments', [PaymentsController::class, 'store'])->middleware('auth');
 Route::get('notifications', [UserNotificationsController::class, 'show'])->middleware('auth');
+
+Route::get('conversations', [ConversationsController::class, 'index']);
+Route::get('conversations/{conversation}', [ConversationsController::class, 'show']);
+
+Route::post('best-replies/{reply}', [ConversationBestReplyController::class, 'store']);
 
 Auth::routes();
